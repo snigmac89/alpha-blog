@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
+  has_many :articles
+  before_save {self.email = email.downcase}
+  before_save {self.username = username.downcase}
  validates :username, presence: true,
 
-  uniqueness: { case_sensitive: false },
+  uniqueness: true,
 
   length: { minimum: 3, maximum: 25 }
 
@@ -9,7 +12,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, length: { maximum: 105 },
 
-  uniqueness: { case_sensitive: false },
+  uniqueness: true,
 
   format: { with: VALID_EMAIL_REGEX }
   

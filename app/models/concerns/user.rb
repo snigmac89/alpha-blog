@@ -1,20 +1,19 @@
 class User < ActiveRecord::Base
-  has_many :articles
-  before_save {self.email = email.downcase}
-  before_save {self.username = username.downcase}
- validates :username, presence: true,
 
-  uniqueness: true,
+validates :username, presence: true,
 
-  length: { minimum: 3, maximum: 25 }
+uniqueness: { case_sensitive: false },
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+length: { minimum: 3, maximum: 25 }
 
-  validates :email, presence: true, length: { maximum: 105 },
+VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  uniqueness: true,
+validates :email, presence: true, length: { maximum: 105 },
 
-  format: { with: VALID_EMAIL_REGEX }
-  
-  has_secure_password
+uniqueness: { case_sensitive: false },
+
+format: { with: VALID_EMAIL_REGEX }
+
+has_secure_password
+
 end

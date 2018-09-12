@@ -6,7 +6,7 @@ def setup
 
 @category = Category.create(name: "sports")
 
-@user = User.create(username: "john", email: "john@example.com", password: "password", admin: true)
+@user = User.create(username: "shoosh", email: "shoosh@shoosh.com", password: "password", admin: true)
 
 end
 
